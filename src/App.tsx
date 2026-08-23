@@ -1,6 +1,3 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
@@ -24,7 +21,9 @@ function App() {
   <main className="dashboard">
     <section className="hero">
       <div>
-        <h1>Good evening, Pharrell.</h1>
+        <h1>Good evening, 
+          <span className="name">Pharrell</span>
+        </h1>
         <p>You've got this. <strong>1% better today.</strong></p>
       </div>
 
