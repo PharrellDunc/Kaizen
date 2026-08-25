@@ -12,17 +12,13 @@ const [currentPage, setCurrentPage] = useState("home");
     <h2>🌱 Kaizen</h2>
 
     <nav>
-      <button onClick={() => setCurrentPage("home")}>
-        🏠 Home
-      </button>
-      <button onClick={() => setCurrentPage("journey")}>
-        📈 Journey
-          </button>
-      <button>✅ Habits</button>
-      <button>🎯 Quests</button>
-      <button>✉️ Letters</button>
-      <button>🏆 Leaderboard</button>
-      <button>📖 Reflections</button>
+<button onClick={() => setCurrentPage("home")}>🏠 Home</button>
+<button onClick={() => setCurrentPage("journey")}>📈 Journey</button>
+<button onClick={() => setCurrentPage("habits")}>✅ Habits</button>
+<button onClick={() => setCurrentPage("quests")}>🎯 Quests</button>
+<button onClick={() => setCurrentPage("letters")}>✉️ Letters</button>
+<button onClick={() => setCurrentPage("leaderboard")}>🏆 Leaderboard</button>
+<button onClick={() => setCurrentPage("reflections")}>📖 Reflections</button>
     </nav>
   </aside>
 
@@ -91,14 +87,44 @@ task={[
 )}
 
 {currentPage === "journey" && (
-        <main className="dashboard">
-          <h1>Journey</h1>
-          <p>This is the Journey page.</p>
-        </main>
-      )}
+  <main className="dashboard">
+    <h1>Journey</h1>
+    <p>This is the Journey page.</p>
+  </main>
+)}
 
-    </div>
-  );
+{currentPage === "habits" && (
+  <main className="dashboard">
+    <h1>Habits</h1>
+  </main>
+)}
+
+{currentPage === "quests" && (
+  <main className="dashboard">
+    <h1>Quests</h1>
+  </main>
+)}
+
+{currentPage === "letters" && (
+  <main className="dashboard">
+    <h1>Letters</h1>
+  </main>
+)}
+
+{currentPage === "leaderboard" && (
+  <main className="dashboard">
+    <h1>Leaderboard</h1>
+  </main>
+)}
+
+{currentPage === "reflections" && (
+  <main className="dashboard">
+    <h1>Reflections</h1>
+  </main>
+)}
+
+</div>
+);
 }
 
-export default App
+export default App;
