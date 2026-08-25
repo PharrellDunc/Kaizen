@@ -1,15 +1,23 @@
 import './App.css'
+import { useState } from 'react';
+import StatsCard from './components/StatsCard';
+import FocusCard from './components/FocusCard';
+
 
 function App() {
-
+const [currentPage, setCurrentPage] = useState("home");
   return (
  <div className="app">
   <aside className="sidebar">
     <h2>🌱 Kaizen</h2>
 
     <nav>
-      <button>🏠 Home</button>
-      <button>📈 Journey</button>
+      <button onClick={() => setCurrentPage("home")}>
+        🏠 Home
+      </button>
+      <button onClick={() => setCurrentPage("journey")}>
+        📈 Journey
+          </button>
       <button>✅ Habits</button>
       <button>🎯 Quests</button>
       <button>✉️ Letters</button>
@@ -18,6 +26,7 @@ function App() {
     </nav>
   </aside>
 
+{currentPage === "home" && (
   <main className="dashboard">
     <section className="hero">
       <div>
@@ -33,26 +42,28 @@ function App() {
     </section>
 
     <section className="stats">
-      <div className="card">
-        <span>🔥 Day Streak</span>
-        <h2>17</h2>
-        <p>days</p>
-      </div>
+      <StatsCard
+      icon="🔥"
+      title="Day Streak"
+      value="17"
+      subtitle="days"
+/>
 
-      <div className="card">
-        <span>📈 Progress</span>
-        <h2>Level 12</h2>
-        <p>1,250 / 2,000 XP</p>
-      </div>
+      <StatsCard
+      icon="📈"
+      title="Progress"
+      value="Level 12"
+      subtitle="1,250 / 2,000 XP"
+/>
 
-      <div className="card focus-card">
-        <span>🎯 Today's Focus</span>
-        <p>✅ Gym</p>
-        <p>✅ Read 20 pages</p>
-        <p>✅ Coding</p>
-        <p>○ Journal</p>
-        <p>○ Call a friend</p>
-      </div>
+      <FocusCard
+      icon="📈"
+      title="Progress"
+task={[
+    "Gym",
+    "Read 20 pages",
+    "Coding"
+]}/>
     </section>
 
     <section className="lower-grid">
@@ -77,8 +88,17 @@ function App() {
       </div>
     </section>
   </main>
-</div>
-)
+)}
+
+{currentPage === "journey" && (
+        <main className="dashboard">
+          <h1>Journey</h1>
+          <p>This is the Journey page.</p>
+        </main>
+      )}
+
+    </div>
+  );
 }
 
 export default App
