@@ -2,6 +2,7 @@ import './App.css'
 import { useState } from 'react';
 import StatsCard from './components/StatsCard';
 import FocusCard from './components/FocusCard';
+import JourneyPage from './pages/JourneyPage';
 
 
 function App() {
@@ -12,14 +13,91 @@ const [currentPage, setCurrentPage] = useState("home");
     <h2>🌱 Kaizen</h2>
 
     <nav>
-<button onClick={() => setCurrentPage("home")}>🏠 Home</button>
-<button onClick={() => setCurrentPage("journey")}>📈 Journey</button>
-<button onClick={() => setCurrentPage("habits")}>✅ Habits</button>
-<button onClick={() => setCurrentPage("quests")}>🎯 Quests</button>
-<button onClick={() => setCurrentPage("letters")}>✉️ Letters</button>
-<button onClick={() => setCurrentPage("leaderboard")}>🏆 Leaderboard</button>
-<button onClick={() => setCurrentPage("reflections")}>📖 Reflections</button>
+      
+<button onClick={() => setCurrentPage("home")}
+  className={currentPage === "home" 
+  ? "active" 
+  : ""
+  }
+  >
+    🏠 Home
+    </button>
+
+<button onClick={() => setCurrentPage("journey")}
+  className={currentPage === "journey" 
+  ? "active" 
+  : ""
+  }
+  >
+    📈 Journey
+    </button>
+
+<button onClick={() => setCurrentPage("habits")}
+  className={currentPage === "habits" 
+  ? "active" 
+  : ""
+  }
+  >
+    🕒 Habits
+    </button>
+
+<button onClick={() => setCurrentPage("quests")}
+  className={currentPage === "quests" 
+  ? "active" 
+  : ""
+  }
+  >
+    🎯 Quests
+    </button>
+
+<button onClick={() => setCurrentPage("letters")}
+  className={currentPage === "letters" 
+  ? "active" 
+  : ""
+  }
+  >
+    ✉️ Letters
+    </button>
+<button onClick={() => setCurrentPage("leaderboard")}
+  className={currentPage === "leaderboard" 
+  ? "active" 
+  : ""
+  }
+  >
+    🏆 Leaderboard
+    </button>
+<button onClick={() => setCurrentPage("reflections")}
+  className={currentPage === "reflections" 
+  ? "active" 
+  : ""
+  }
+  >
+    📖 Reflections
+    </button>
+
     </nav>
+
+    <div className="sidebar-bottom">
+
+  <div className="sidebar-quote">
+    <p>“Small steps every day lead to big change.”</p>
+    <span>— Kaizen Philosophy</span>
+  </div>
+
+  <div className="sidebar-profile">
+    <div className="profile-picture">P</div>
+
+    <div className="profile-info">
+      <strong>Pharrell</strong>
+      <span>Level 12</span>
+
+      <div className="level-bar">
+        <div className="level-progress"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
   </aside>
 
 {currentPage === "home" && (
@@ -86,12 +164,7 @@ task={[
   </main>
 )}
 
-{currentPage === "journey" && (
-  <main className="dashboard">
-    <h1>Journey</h1>
-    <p>This is the Journey page.</p>
-  </main>
-)}
+{currentPage === "journey" && <JourneyPage/>}
 
 {currentPage === "habits" && (
   <main className="dashboard">
