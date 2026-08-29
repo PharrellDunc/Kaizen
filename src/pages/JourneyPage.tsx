@@ -76,6 +76,7 @@ function JourneyPage() {
             />
     </section>
 
+    <div className="timeline-topbar">
     <section className="journey-tabs">
         <button className="journey-tab active-tab">Timeline</button>
         <button className="journey-tab">Milestones</button>
@@ -83,9 +84,21 @@ function JourneyPage() {
         <button className="journey-tab">Stats</button>
         </section>
 
+         <button className="timeline-filter">📅 All Time</button>
+    </div>   
+
     <section className="journey-timeline">
-    |{timelineEvents.map((event) => (
+        <div className="timeline-month-row">
+  <div></div>
+
+  <h4 className="timeline-month">
+    August 2026
+  </h4>
+</div>
+
+    {timelineEvents.map((event) => (
         <TimelineEvent
+        key={`${event.date}-${event.time}-${event.title}`}
             icon={event.icon}
             date={event.date}
             time={event.time}

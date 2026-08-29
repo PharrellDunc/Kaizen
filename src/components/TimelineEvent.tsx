@@ -9,12 +9,15 @@ interface TimelineEventProps {
 
 function TimelineEvent(props: TimelineEventProps) {
     return (
-        <div className="timeline-event">
+        <div className="timeline-row">
 
+    <div className="timeline-marker">
         <div className="timeline-icon">
             {props.icon}
+            </div>
         </div>
 
+    <div className="timeline-event">
         <div className="timeline-date">
             <strong>{props.date}</strong>
             <span>{props.time}</span>
@@ -29,6 +32,7 @@ function TimelineEvent(props: TimelineEventProps) {
             {props.xp} 
         </div>
 
+        </div>
         </div>
     );
 }
