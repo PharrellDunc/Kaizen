@@ -3,6 +3,7 @@ import { useState } from 'react';
 import StatsCard from './components/StatsCard';
 import FocusCard from './components/FocusCard';
 import JourneyPage from './pages/JourneyPage';
+import HabitPage from './pages/HabitPage';
 
 
 function App() {
@@ -166,11 +167,7 @@ task={[
 
 {currentPage === "journey" && <JourneyPage/>}
 
-{currentPage === "habits" && (
-  <main className="dashboard">
-    <h1>Habits</h1>
-  </main>
-)}
+{currentPage === "habits" && <HabitPage/>}
 
 {currentPage === "quests" && (
   <main className="dashboard">

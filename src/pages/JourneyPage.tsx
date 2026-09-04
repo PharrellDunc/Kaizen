@@ -1,6 +1,7 @@
 import StatsCard from '../components/StatsCard';
 import './JourneyPage.css';
 import TimelineEvent from '../components/TimelineEvent';
+import { useState } from 'react';
 
 const timelineEvents = [
   {
@@ -32,8 +33,15 @@ const timelineEvents = [
 ];
 
 function JourneyPage() {
+    const [activeTab, setActiveTab] = useState("timeline");
+    const [timeFilter, setTimefilter] = useState("All Time");
   return (
 <main className ="dashboard journey-page">
+    <div className="journey-status">
+  <div className="status-item">🔥 17 <span>Day Streak</span></div>
+  <div className="status-item">💎 2,450 <span>XP</span></div>
+  <div className="profile-avatar">P</div>
+</div>
     <section className ="journey-hero">
         <div className="journey-heading">
             <h1>Journey 🌱</h1>
@@ -78,13 +86,53 @@ function JourneyPage() {
 
     <div className="timeline-topbar">
     <section className="journey-tabs">
-        <button className="journey-tab active-tab">Timeline</button>
-        <button className="journey-tab">Milestones</button>
-        <button className="journey-tab">Challenges</button>
-        <button className="journey-tab">Stats</button>
-        </section>
 
-         <button className="timeline-filter">📅 All Time</button>
+<button onClick={() => setActiveTab("timeline")}
+  className={activeTab === "timeline" 
+  ? "journey-tab active-tab" 
+  : "journey-tab"
+  }
+  >
+    🏠 Home
+    </button>
+
+<button onClick={() => setActiveTab("milestones")}
+  className={activeTab === "milestones" 
+  ? "journey-tab active-tab" 
+  : "journey-tab"
+  }
+  >
+    📈 Journey
+    </button>
+
+<button onClick={() => setActiveTab("challenges")}
+  className={activeTab === "challenges" 
+  ? "journey-tab active-tab" 
+  : "journey-tab"
+  }
+  >
+    🕒 Habits
+    </button>
+
+<button onClick={() => setActiveTab("stats")}
+  className={activeTab  === "stats" 
+  ? "journey-tab active-tab" 
+  : "journey-tab"
+  }
+  >
+    🎯 Quests
+    </button>
+        </section>
+        
+    <select
+    className="timeline-filter"
+    value={timeFilter}
+    onChange={(e) => setTimefilter(e.target.value)}
+    >
+        <option value="All Time">All Time</option>
+        <option value="Last 30 Days">This Month</option>
+        <option value="Last 7 Days">This Week</option>
+    </select>
     </div>   
 
     <section className="journey-timeline">
@@ -109,8 +157,35 @@ function JourneyPage() {
     ))}
         </section>
 
+
+{activeTab === "milestones" && (
+  <section>
+    <h2>Milestones</h2>
+    <p>Your unlocked milestones will appear here.</p>
+  </section>
+)}
+
+{activeTab === "challenges" && (
+  <section>
+    <h2>Challenges</h2>
+    <p>Your completed challenges will appear here.</p>
+  </section>
+)}
+
+{activeTab === "stats" && (
+  <section>
+    <h2>Stats</h2>
+    <p>Your Journey statistics will appear here.</p>
+  </section>
+)}
+
+<p className="journey-footer-message">
+    keep going, Pharrell. Your future self is watching.
+</p>
     </main>
 );
+
+
 }
 
 export default JourneyPage;

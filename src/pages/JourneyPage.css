@@ -42,6 +42,44 @@
     color: #8cff76;
 }
 
+.journey-status {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.journey-footer-message {
+  text-align: center;
+  color: #8fa1b8;
+  margin-top: 28px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+}
+
+.status-item span {
+  color: #8fa1b8;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #16324a;
+  font-weight: bold;
+}
+
 .timeline-header {
   display: flex;
   justify-content: space-between;

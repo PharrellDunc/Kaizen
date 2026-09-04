@@ -1,0 +1,109 @@
+.habits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.habit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+    margin-bottom: 5px;
+
+    background: #0d1b2d;
+    border: 1px solid #21344d;
+    border-radius: 14px;
+}
+
+.habit-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.habit-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #173525;
+    border: 1px solid #3b6f4b;
+
+    font-size: 20px;
+}
+
+.habit-info h3 {
+    margin: 0;
+}
+
+.habit-info p {
+    margin-top: 6px;
+    color: #8fa1b8;
+    font-size: 14px;
+}
+
+.habit-check {
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.habits-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.habit-panel,
+.recent-completions {
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.longest-streaks p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recent-completions {
+  margin-top: 16px;
+}
+
+.recent-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.habits-hero {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.habits-heading h1 {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.habits-heading p {
+    color: #aebbd0;
+    font-size: 20px;
+}
