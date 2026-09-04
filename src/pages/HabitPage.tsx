@@ -113,6 +113,31 @@ function HabitPage() {
                   <p>☎️ Call someone you haven't spoken to in a while.</p>
                   <p>🚶 Go for a 20 minute walk without your phone.</p>
                 </div>
+
+                <div className="habit-panel longest-streaks">
+                  <h2>Longest Streaks</h2>
+
+                    <p>
+                      🏋️ Go to the Gym
+                      <span>1028 days</span>
+                    </p>
+
+                    <p>
+                      🔥 Reading
+                      <span>19 days</span>
+                    </p>
+
+                    <p>
+                      🌱 Meditation
+                      <span>3 days</span>
+                    </p>
+
+                    <p>
+                      👨🏾‍🎓 Duolingo
+                      <span>8 days</span>
+                    </p>
+                  </div>
+                  
               </section>
 
               <section className="recent-completions">
