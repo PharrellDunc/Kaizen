@@ -4,6 +4,53 @@
   grid-template-columns: 230px 1fr;
   background: #07101f;
   color: #f5f7fb;
+
+  position: relative;
+}
+
+.app-main {
+  min-width: 0;
+}
+
+.global-status {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 30px 0;
+}
+.global-status-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 12px;
+}
+
+.global-status-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.global-status-item small {
+  color: #8fa1b8;
+}
+
+.global-profile {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: 1px solid #7048b4;
+
+  background: #111b31;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .sidebar {

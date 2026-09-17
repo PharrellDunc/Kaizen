@@ -1,0 +1,148 @@
+.quest-hero {
+  padding: 26px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+  background:
+    radial-gradient(circle at 80% 30%, rgba(111, 72, 180, 0.25), transparent 35%),
+    linear-gradient(135deg, #0b1728, #111b31);
+}
+
+.quest-hero h1 {
+  font-size: 52px;
+  margin: 0 0 8px;
+}
+
+.quest-hero p {
+  color: #aebbd0;
+}
+
+.quest-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.quest-tabs button {
+  padding: 10px 16px;
+  border: 1px solid #21344d;
+  border-radius: 10px;
+  background: #0d1b2d;
+  color: #aebbd0;
+  cursor: pointer;
+}
+
+.quest-tabs button.active {
+  color: #8cff76;
+  border-color: #3b6f4b;
+}
+
+.featured-quest {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 24px;
+  margin-bottom: 24px;
+
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 16px;
+}
+
+.featured-reward {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featured-reward strong {
+  color: #a986ff;
+}
+
+.quest-group {
+  margin-top: 24px;
+}
+
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.quest-card {
+  padding: 20px;
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 14px;
+}
+
+.quest-card h3 {
+  min-height: 48px;
+}
+
+.quest-card p {
+  color: #9fb0c6;
+}
+
+.quest-card strong {
+  color: #a986ff;
+}
+
+.quest-progress-bar {
+  height: 6px;
+  margin: 12px 0;
+  background: #22344b;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.quest-progress-fill {
+  width: 60%;
+  height: 100%;
+  background: #63e66b;
+}
+
+.recent-quest-activity {
+  margin-top: 28px;
+  padding: 22px;
+
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 16px;
+}
+
+.recent-quest-activity h2 {
+  margin-bottom: 18px;
+}
+
+.recent-quest-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.recent-quest-list p {
+  color: #9fb0c6;
+}
+
+.recent-quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recent-quest-header button {
+  padding: 8px 14px;
+  border: 1px solid #21344d;
+  border-radius: 10px;
+  background: transparent;
+  color: #aebbd0;
+  cursor: pointer;
+}
+
+.recent-quest-header button:hover {
+  background: #14283a;
+  color: #9bef73;
+}

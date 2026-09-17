@@ -4,6 +4,7 @@ import StatsCard from './components/StatsCard';
 import FocusCard from './components/FocusCard';
 import JourneyPage from './pages/JourneyPage';
 import HabitPage from './pages/HabitPage';
+import QuestPage from './pages/QuestPage';
 
 
 function App() {
@@ -100,6 +101,30 @@ const [currentPage, setCurrentPage] = useState("home");
 
 </div>
   </aside>
+ <div className="app-main">
+  <div className="global-status">
+    <div className="global-status-item">
+      <span>🔥</span>
+
+    <div>
+      <strong>17</strong>
+      <small>Day Streak</small>
+    </div>
+  </div>
+
+  <div className="global-status-item">
+    <span>💎</span>
+
+    <div>
+      <strong>2,450</strong>
+      <small>XP</small>
+    </div>
+  </div>
+
+  <button className="global-profile">
+    P
+  </button>
+</div>
 
 {currentPage === "home" && (
   <main className="dashboard">
@@ -169,11 +194,7 @@ task={[
 
 {currentPage === "habits" && <HabitPage/>}
 
-{currentPage === "quests" && (
-  <main className="dashboard">
-    <h1>Quests</h1>
-  </main>
-)}
+{currentPage === "quests" && <QuestPage />}
 
 {currentPage === "letters" && (
   <main className="dashboard">
@@ -192,7 +213,7 @@ task={[
     <h1>Reflections</h1>
   </main>
 )}
-
+</div>
 </div>
 );
 }

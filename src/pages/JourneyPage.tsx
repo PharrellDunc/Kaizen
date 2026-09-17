@@ -37,11 +37,7 @@ function JourneyPage() {
     const [timeFilter, setTimefilter] = useState("All Time");
   return (
 <main className ="dashboard journey-page">
-    <div className="journey-status">
-  <div className="status-item">🔥 17 <span>Day Streak</span></div>
-  <div className="status-item">💎 2,450 <span>XP</span></div>
-  <div className="profile-avatar">P</div>
-</div>
+
     <section className ="journey-hero">
         <div className="journey-heading">
             <h1>Journey 🌱</h1>
