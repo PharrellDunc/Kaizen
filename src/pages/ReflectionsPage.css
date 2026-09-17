@@ -1,0 +1,151 @@
+.reflections-hero {
+  padding: 28px;
+  border: 1px solid #21344d;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background:
+    radial-gradient(circle at 75% 30%, rgba(111, 72, 180, 0.22), transparent 35%),
+    linear-gradient(135deg, #0b1728, #111b31);
+}
+
+.reflections-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.new-reflection,
+.mood-tracker,
+.reflection-stats,
+.reflection-motivation {
+  padding: 22px;
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 16px;
+}
+
+.new-reflection textarea {
+  width: 100%;
+  min-height: 140px;
+  margin: 14px 0;
+  padding: 14px;
+  background: #081625;
+  border: 1px solid #21344d;
+  border-radius: 12px;
+  color: white;
+}
+
+.mood-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.save-reflection {
+  margin-top: 14px;
+}
+
+.reflection-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.reflection-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.reflection-tabs button,
+.reflection-search {
+  padding: 10px 14px;
+  border: 1px solid #21344d;
+  border-radius: 10px;
+  background: #0d1b2d;
+  color: #aebbd0;
+}
+
+.reflection-tabs .active {
+  color: #8cff76;
+  border-color: #3b6f4b;
+}
+
+.reflections-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.reflection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reflection-card {
+  display: grid;
+  grid-template-columns: 100px 1fr 50px;
+  gap: 16px;
+  align-items: center;
+
+  padding: 18px;
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 14px;
+}
+
+.reflection-card p {
+  color: #9fb0c6;
+}
+
+.reflection-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.new-reflection textarea{
+    width:100%;
+    min-height:140px;
+    padding:14px;
+
+    box-sizing:border-box;
+
+    resize:vertical;
+
+    background:#081625;
+    border:1px solid #21344d;
+    border-radius:12px;
+    color:white;
+}
+
+.reflection-side{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.reflection-motivation{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    text-align:center;
+}
+
+.reflection-motivation p{
+    font-style: italic;
+    line-height: 1.7;
+    color:#c8d6ea;
+}
+
+.reflection-motivation span{
+    display:block;
+    margin-top:18px;
+    color:#8cff76;
+    font-size:14px;
+}

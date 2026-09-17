@@ -7,6 +7,7 @@ import HabitPage from './pages/HabitPage';
 import QuestPage from './pages/QuestPage';
 import LettersPage from './pages/LettersPage';
 import LeaderboardPage from './pages/LeaderboardPage';
+import ReflectionsPage from './pages/ReflectionsPage';
 
 
 function App() {
@@ -201,11 +202,7 @@ task={[
 {currentPage === "letters" && <LettersPage />}
 {currentPage === "leaderboard" && <LeaderboardPage />}
 
-{currentPage === "reflections" && (
-  <main className="dashboard">
-    <h1>Reflections</h1>
-  </main>
-)}
+{currentPage === "reflections" && <ReflectionsPage />}
 </div>
 </div>
 );
