@@ -1,0 +1,131 @@
+.leaderboard-hero {
+  padding: 28px;
+  border: 1px solid #21344d;
+  border-radius: 20px;
+  margin-bottom: 24px;
+
+  background:
+    radial-gradient(circle at 75% 30%, rgba(111, 72, 180, 0.22), transparent 35%),
+    linear-gradient(135deg, #0b1728, #111b31);
+}
+
+.leaderboard-hero h1 {
+  font-size: 52px;
+  margin: 6px 0 8px;
+}
+
+.leaderboard-hero p {
+  max-width: 600px;
+  color: #aebbd0;
+}
+
+.leaderboard-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.leaderboard-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.leaderboard-tabs button,
+.leaderboard-sort {
+  padding: 10px 16px;
+  border: 1px solid #21344d;
+  border-radius: 10px;
+  background: #0d1b2d;
+  color: #aebbd0;
+}
+
+.leaderboard-tabs .active {
+  color: #8cff76;
+  border-color: #3b6f4b;
+}
+
+.leaderboard-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.leaderboard-table,
+.rank-card,
+.keep-going-card,
+.leaderboard-quote {
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 16px;
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 60px 1.5fr 100px 120px 100px;
+  align-items: center;
+
+  padding: 16px 18px;
+  border-bottom: 1px solid #1b2a3e;
+}
+
+.leaderboard-header {
+  color: #8fa1b8;
+}
+
+.current-user {
+  background: #173525;
+  color: #8cff76;
+}
+
+.leaderboard-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rank-card,
+.keep-going-card,
+.leaderboard-quote {
+  padding: 22px;
+}
+
+.rank-card > strong {
+  font-size: 44px;
+  color: #8cff76;
+}
+
+.rank-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.rank-stats div {
+  padding: 12px;
+  text-align: center;
+  background: #101f32;
+  border-radius: 10px;
+}
+
+.rank-stats span {
+  display: block;
+  color: #8fa1b8;
+  font-size: 12px;
+}
+
+.keep-going-card strong {
+  color: #8cff76;
+}
+
+.leaderboard-quote {
+  color: #aebbd0;
+  font-style: italic;
+}
+
+.leaderboard-footer {
+  text-align: center;
+  margin-top: 28px;
+  color: #8fa1b8;
+}

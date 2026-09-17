@@ -3,6 +3,7 @@ padding: 28px;
   border: 1px solid #21344d;
   border-radius: 20px;
   margin-bottom: 28px;
+  margin-top: 20px;
   background:
     radial-gradient(circle at 75% 30%, rgba(111, 72, 180, 0.22), transparent 35%),
     linear-gradient(135deg, #0b1728, #111b31);
@@ -79,6 +80,8 @@ padding: 28px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+
+   margin-top: 20px;
 }
 
 .letter-card {
@@ -87,7 +90,11 @@ padding: 28px;
   border: 1px solid #21344d;
   border-radius: 16px;
 }
-
+.letters-page {
+  width: calc(100% - 80px);
+  max-width: 1050px;
+  margin: 0 auto;
+}
 .letter-icon {
   font-size: 28px;
 }
