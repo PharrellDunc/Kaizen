@@ -1,0 +1,118 @@
+.letters-hero {
+padding: 28px;
+  border: 1px solid #21344d;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  background:
+    radial-gradient(circle at 75% 30%, rgba(111, 72, 180, 0.22), transparent 35%),
+    linear-gradient(135deg, #0b1728, #111b31);
+}
+
+.letters-heading{
+    text-align:left;
+}
+
+.letters-heading h1 {
+  font-size: 52px;
+  margin: 6px 0 8px;
+}
+
+.letters-heading p {
+  color: #aebbd0;
+}
+
+
+.write-letter-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  padding: 24px;
+  margin-bottom: 20px;
+
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 16px;
+}
+
+.write-letter-card p {
+  color: #9fb0c6;
+}
+
+.write-letter-card button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #33593f;
+  color: white;
+  cursor: pointer;
+}
+
+.letters-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.letter-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.letter-tabs button,
+.letter-sort {
+  padding: 10px 16px;
+  border: 1px solid #21344d;
+  border-radius: 10px;
+  background: #0d1b2d;
+  color: #aebbd0;
+}
+
+.letter-tabs .active {
+  color: #8cff76;
+  border-color: #3b6f4b;
+}
+
+.letters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.letter-card {
+  padding: 22px;
+  background: #0d1b2d;
+  border: 1px solid #21344d;
+  border-radius: 16px;
+}
+
+.letter-icon {
+  font-size: 28px;
+}
+
+.letter-date {
+  color: #9fb0c6;
+}
+
+.letter-preview {
+  color: #8fa1b8;
+  font-style: italic;
+}
+
+.letter-card button {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #16324a;
+  color: white;
+  cursor: pointer;
+}
+
+.letters-footer {
+  text-align: center;
+  margin-top: 28px;
+  color: #8fa1b8;
+}

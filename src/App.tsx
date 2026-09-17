@@ -5,6 +5,7 @@ import FocusCard from './components/FocusCard';
 import JourneyPage from './pages/JourneyPage';
 import HabitPage from './pages/HabitPage';
 import QuestPage from './pages/QuestPage';
+import LettersPage from './pages/LettersPage';
 
 
 function App() {
@@ -196,12 +197,7 @@ task={[
 
 {currentPage === "quests" && <QuestPage />}
 
-{currentPage === "letters" && (
-  <main className="dashboard">
-    <h1>Letters</h1>
-  </main>
-)}
-
+{currentPage === "letters" && <LettersPage />}
 {currentPage === "leaderboard" && (
   <main className="dashboard">
     <h1>Leaderboard</h1>
