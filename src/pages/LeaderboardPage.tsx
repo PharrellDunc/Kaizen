@@ -1,7 +1,7 @@
 import './LeaderboardPage.css';
 
 const users = [
-  { rank: 1, name: "Franca", level: 28, xp: 12450, streak: 62 },
+  { rank: 1, name: "Franca", level: 28, xp: 12450, streak: 67 },
   { rank: 2, name: "JordanBH", level: 25, xp: 11200, streak: 48 },
   { rank: 3, name: "David_m", level: 22, xp: 9870, streak: 37 },
   { rank: 4, name: "JackTaylor", level: 20, xp: 8410, streak: 29 },

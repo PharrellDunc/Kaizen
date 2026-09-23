@@ -1,5 +1,4 @@
 import './App.css'
-import { useState } from 'react';
 import StatsCard from './components/StatsCard';
 import FocusCard from './components/FocusCard';
 import JourneyPage from './pages/JourneyPage';
@@ -8,10 +7,11 @@ import QuestPage from './pages/QuestPage';
 import LettersPage from './pages/LettersPage';
 import LeaderboardPage from './pages/LeaderboardPage';
 import ReflectionsPage from './pages/ReflectionsPage';
+import { Routes, Route, NavLink} from 'react-router-dom';
+import HomePage from './pages/HomePage';
 
 
 function App() {
-const [currentPage, setCurrentPage] = useState("home");
   return (
  <div className="app">
   <aside className="sidebar">
@@ -19,66 +19,45 @@ const [currentPage, setCurrentPage] = useState("home");
 
     <nav>
       
-<button onClick={() => setCurrentPage("home")}
-  className={currentPage === "home" 
-  ? "active" 
-  : ""
-  }
-  >
-    🏠 Home
-    </button>
+<NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>
+  🏠 Home
+</NavLink>
 
-<button onClick={() => setCurrentPage("journey")}
-  className={currentPage === "journey" 
-  ? "active" 
-  : ""
-  }
-  >
-    📈 Journey
-    </button>
+<NavLink
+  to="/journey"
+  className={({ isActive }) => isActive ? "active" : ""}>
+  📈 Journey
+</NavLink>
 
-<button onClick={() => setCurrentPage("habits")}
-  className={currentPage === "habits" 
-  ? "active" 
-  : ""
-  }
-  >
-    🕒 Habits
-    </button>
+<NavLink
+  to="/habits"
+  className={({ isActive }) => isActive ? "active" : ""}>
+  🕒 Habits
+</NavLink>
 
-<button onClick={() => setCurrentPage("quests")}
-  className={currentPage === "quests" 
-  ? "active" 
-  : ""
-  }
-  >
-    🎯 Quests
-    </button>
+<NavLink
+  to="/quests"
+  className={({ isActive }) => isActive ? "active" : ""}>
+  🎯 Quests
+</NavLink>
 
-<button onClick={() => setCurrentPage("letters")}
-  className={currentPage === "letters" 
-  ? "active" 
-  : ""
-  }
-  >
-    ✉️ Letters
-    </button>
-<button onClick={() => setCurrentPage("leaderboard")}
-  className={currentPage === "leaderboard" 
-  ? "active" 
-  : ""
-  }
-  >
-    🏆 Leaderboard
-    </button>
-<button onClick={() => setCurrentPage("reflections")}
-  className={currentPage === "reflections" 
-  ? "active" 
-  : ""
-  }
-  >
-    📖 Reflections
-    </button>
+<NavLink
+  to="/letters"
+  className={({ isActive }) => isActive ? "active" : ""}>
+  ✉️ Letters
+</NavLink>
+
+<NavLink
+  to="/leaderboard"
+  className={({ isActive }) => isActive ? "active" : ""}>
+  🏆 Leaderboard
+</NavLink>
+
+<NavLink
+  to="/reflections"
+  className={({ isActive }) => isActive ? "active" : ""}>
+  📖 Reflections
+</NavLink>
 
     </nav>
 
@@ -129,80 +108,16 @@ const [currentPage, setCurrentPage] = useState("home");
   </button>
 </div>
 
-{currentPage === "home" && (
-  <main className="dashboard">
-    <section className="hero">
-      <div>
-        <h1>Good evening, 
-          <span className="name">Pharrell</span>
-        </h1>
-        <p>You've got this. <strong>1% better today.</strong></p>
-      </div>
+<Routes>
+  <Route path="/" element={<HomePage />} />
+  <Route path="/journey" element={<JourneyPage />} />
+  <Route path="/habits" element={<HabitPage />} />
+  <Route path="/quests" element={<QuestPage />} />
+  <Route path="/letters" element={<LettersPage />} />
+  <Route path="/leaderboard" element={<LeaderboardPage />} />
+  <Route path="/reflections" element={<ReflectionsPage />} />
+</Routes>
 
-      <div className="quote">
-        “Sometimes ambition moves the finish line so often that you forget how far you've already travelled.”
-      </div>
-    </section>
-
-    <section className="stats">
-      <StatsCard
-      icon="🔥"
-      title="Day Streak"
-      value="17"
-      subtitle="days"
-/>
-
-      <StatsCard
-      icon="📈"
-      title="Progress"
-      value="Level 12"
-      subtitle="1,250 / 2,000 XP"
-/>
-
-      <FocusCard
-      icon="📈"
-      title="Progress"
-task={[
-    "Gym",
-    "Read 20 pages",
-    "Coding"
-]}/>
-    </section>
-
-    <section className="lower-grid">
-      <div className="card">
-        <span>🌿 Daily Quest</span>
-        <h3>Do something uncomfortable.</h3>
-        <p>Small courage compounds.</p>
-        <button>View Quest</button>
-      </div>
-
-      <div className="card tree-card">
-        <span>🌳 Habit Tree</span>
-        <div className="tree">🌳</div>
-        <p>Nurture your habits. Watch yourself grow.</p>
-      </div>
-
-      <div className="card">
-        <span>✉️ Letter to Future You</span>
-        <h3>Remember who you wanted to be?</h3>
-        <p>Leave something for the person you're becoming.</p>
-        <button>Write Letter</button>
-      </div>
-    </section>
-  </main>
-)}
-
-{currentPage === "journey" && <JourneyPage/>}
-
-{currentPage === "habits" && <HabitPage/>}
-
-{currentPage === "quests" && <QuestPage />}
-
-{currentPage === "letters" && <LettersPage />}
-{currentPage === "leaderboard" && <LeaderboardPage />}
-
-{currentPage === "reflections" && <ReflectionsPage />}
 </div>
 </div>
 );

@@ -70,7 +70,7 @@
   gap: 12px;
 }
 
-.sidebar button {
+.sidebar a {
   padding: 13px 16px;
   text-align: left;
   border: none;
@@ -80,12 +80,16 @@
   cursor: pointer;
 }
 
-.sidebar button.active {
+.sidebar a.active {
   background: #14283a;
   color: #9bef73;
 }
 
-.sidebar button:hover {
+.sidebar a {
+  text-decoration: none;
+}
+
+.sidebar a:hover {
   background: #14283a;
   color: #9bef73;
 }
