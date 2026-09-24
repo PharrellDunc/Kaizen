@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './db/db.js';
 import authRouter from './routes/auth.js';
+import auth from './middleware/authMiddleware.js'
 
 dotenv.config();
 
@@ -23,6 +24,18 @@ app.get("/api/health", (req, res) => {
     status: "ok",
     message: "Kaizen backend is running",
   });
+});
+
+app.get("/api/me", auth, async (req, res)  =>{
+  const userId = res.locals.userId;
+  const result = await pool.query(
+    `SELECT id, name, email, level, xp, streak, created_at
+     FROM users 
+     WHERE id = $1`,
+     [userId]
+  );
+
+  res.json(result.rows[0])
 });
 
 app.listen(3000, () => {
