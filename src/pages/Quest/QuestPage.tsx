@@ -1,5 +1,5 @@
 import "./QuestPage.css";
-import QuestCard from "../components/QuestCard";
+import QuestCard from "../../components/Cards/QuestCard";
 
 const dailyQuests = [
     {

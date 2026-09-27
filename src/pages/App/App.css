@@ -266,6 +266,25 @@
   background: #63e66b;
 }
 
+.logout-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 14px;
+
+  border: 1px solid #21344d;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #aebbd0;
+
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #14283a;
+  color: #9bef73;
+}
+
 @media (max-width: 800px) {
   .app {
     grid-template-columns: 1fr;

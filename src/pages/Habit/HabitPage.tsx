@@ -1,5 +1,5 @@
 import "./HabitPage.css";
-import HabitItem from "../components/HabitItem";
+import HabitItem from "../../components/HabitItem";
 
 const habits = [
   {

@@ -1,6 +1,6 @@
-import StatsCard from '../components/StatsCard';
+import StatsCard from '../../components/Cards/StatsCard';
 import './JourneyPage.css';
-import TimelineEvent from '../components/TimelineEvent';
+import TimelineEvent from '../../components/TimelineEvent';
 import { useState } from 'react';
 
 const timelineEvents = [

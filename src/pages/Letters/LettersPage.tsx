@@ -1,5 +1,5 @@
 import "./LettersPage.css";
-import LetterCard from "../components/LetterCard";
+import LetterCard from "../../components/Cards/LetterCard";
 const letters = [
   {
     title: "For the version of me finishing university",

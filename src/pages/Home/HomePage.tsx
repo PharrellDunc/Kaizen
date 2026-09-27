@@ -1,14 +1,61 @@
-import StatsCard from "../components/StatsCard";
-import FocusCard from "../components/FocusCard";
+import StatsCard from "../../components/Cards/StatsCard";
+import FocusCard from "../../components/Cards/FocusCard";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const [backendMessage, setBackendMessage] = useState("");
+  const[user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
+
+useEffect(() => {
+  fetch("http://localhost:3000/api/health")
+    .then((response) => response.json())
+    .then((data) => {
+      setBackendMessage(data.message);
+    });
+}, []);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  console.log("Token found:", token);
+
+  if (!token) {
+    return;
+  }
+
+  fetch("http://localhost:3000/api/me", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
+  .then((response) => {
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      navigate("/login");
+      return null;
+    }
+
+    return response.json();
+  })
+  .then((data) => {
+    if (data) {
+      setUser(data);
+    }
+  });
+}, []);
+
     return (
         <main className="dashboard">
     <section className="hero">
       <div>
         <h1>Good evening, 
-          <span className="name">Pharrell</span>
+          <span className="name">
+            {user ? user.name: "loading..."}
+          </span>
         </h1>
+        <p>{backendMessage}</p>
         <p>You've got this. <strong>1% better today.</strong></p>
       </div>
 
@@ -66,5 +113,7 @@ task={[
   </main>
     )
 }
+
+
 
 export default HomePage;
