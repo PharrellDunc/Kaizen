@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import pool from './db/db.js';
 import authRouter from './routes/auth.js';
 import auth from './middleware/authMiddleware.js'
+import habitsRouter from "./routes/habits.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+app.use("/api/habits", habitsRouter);
 
 
 app.get("/", (req, res) => {

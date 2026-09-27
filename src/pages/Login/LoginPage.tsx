@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import "./LoginPage.css";
 
 type LoginPageProps = {
@@ -122,8 +122,11 @@ function LoginPage({ onLogin }: LoginPageProps) {
       </button>
 
       <p className="register-link">
-        New here? <span>Create an account</span>
-      </p>
+     New here?{" "}
+      <NavLink to="/register">
+      Create an account
+      </NavLink>
+    </p>
 
     </section>
 

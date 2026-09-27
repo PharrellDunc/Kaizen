@@ -1,52 +1,65 @@
 import "./HabitPage.css";
 import HabitItem from "../../components/HabitItem";
-
-const habits = [
-  {
-    icon: "🌱",
-    name: "Morning Meditation",
-    streak: 3,
-    completed: true,
-  },
-
-  {
-    icon: "🔥",
-    name: "Reading 30 minutes",
-    streak: 19,
-    completed: true,
-  },
-
-  {
-    icon: "⛹🏽",
-    name: "Basketball Practice",
-    streak: 1,
-    completed: false,
-  },
-
-  {
-    icon: "🏋🏽‍♂️",
-    name: "Go to the Gym",
-    streak: 1028,
-    completed: true,
-  },
-
-  {
-    icon: "👨🏾‍🎓",
-    name: "Duolingo Spanish",
-    streak: 8,
-    completed: false,
-  },
-
-  {
-    icon: "👨🏾‍💻",
-    name: "Practice coding",
-    streak: 0,
-    completed: false,
-  },
-];
-
+import { useEffect, useState } from "react";
 
 function HabitPage() {
+  const [habits, setHabits] = useState<any[]>([]);
+  const [newHabit, setNewHabit] = useState("");
+
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return;
+  }
+
+  fetch("http://localhost:3000/api/habits", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setHabits(data);
+    });
+}, []);
+
+async function handleAddHabit(event: React.FormEvent) {
+  event.preventDefault();
+
+  const token = localStorage.getItem("token");
+
+  if (!token || !newHabit.trim()) {
+    return;
+  }
+
+  const response = await fetch(
+    "http://localhost:3000/api/habits",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: newHabit,
+      }),
+    }
+  );
+
+  const createdHabit = await response.json();
+
+  if (!response.ok) {
+    return;
+  }
+
+  setHabits((currentHabits) => [
+    ...currentHabits,
+    createdHabit,
+  ]);
+
+  setNewHabit("");
+}
     return (
         <main className="dashboard habits-page">
 
@@ -71,25 +84,38 @@ function HabitPage() {
 
             <section className="today-habits">
 
-            <div className="habits-header">
-                <h2>Today's Habits</h2>
+  <div className="habits-header">
+    <h2>Today's Habits</h2>
 
-                <button>Edit ✏️</button>
-            </div>
+    <button>Edit ✏️</button>
+  </div>
 
-            <div className="habits-list">
-             {habits.map((habit) => (
-                <HabitItem
-                    key={habit.name}
-                    icon={habit.icon}
-                    name={habit.name}
-                    streak={habit.streak}
-                    completed={habit.completed}
-                />
-            ))}
-            </div>
+  <form onSubmit={handleAddHabit} className="add-habit-form">
+    <input
+      type="text"
+      placeholder="Add a new habit..."
+      value={newHabit}
+      onChange={(event) => setNewHabit(event.target.value)}
+    />
 
-            </section>
+    <button type="submit">
+      + Add Habit
+    </button>
+  </form>
+
+  <div className="habits-list">
+    {habits.map((habit) => (
+      <HabitItem
+        key={habit.id}
+        icon="🌱"
+        name={habit.name}
+        streak={0}
+        completed={habit.completed}
+      />
+    ))}
+  </div>
+
+</section>
 
             <section className="habits-bottom-grid">
               <div className="habit-panel weekly-overview">

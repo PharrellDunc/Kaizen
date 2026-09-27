@@ -9,6 +9,7 @@ import { Routes, Route, NavLink, useNavigate} from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import LoginPage from '../Login/LoginPage';
 import ProtectedRoute from '../../components/ProtectedRoute';
+import RegisterPage from '../Register/RegisterPage';
 import { useEffect, useState } from "react";
 
 type User = {
@@ -59,6 +60,7 @@ function App() {
   return (
   <Routes>
     <Route path="/login" element={<LoginPage onLogin={setUser} />} />
+    <Route path="/register" element={<RegisterPage />} />
 
     <Route
       path="/*"
@@ -115,9 +117,7 @@ function App() {
                     <strong>{user?.name ?? "User"}</strong>
                     <span>Level {user?.level ?? 1}</span>
 
-                    <div className="level-bar">
-                      <div className="level-progress"></div>
-                    </div>
+                 
                   </div>
                 </div>
 
