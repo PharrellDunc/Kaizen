@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import "../Login/LoginPage.css";
+import API_URL from "../../config";
 
 function RegisterPage() {
   const [name, setName] = useState("");
@@ -19,7 +20,7 @@ function RegisterPage() {
     }
 
     const response = await fetch(
-      "http://localhost:3000/api/auth/register",
+      `${API_URL}/api/auth/register`,
       {
         method: "POST",
         headers: {

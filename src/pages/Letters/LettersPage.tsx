@@ -1,7 +1,7 @@
 import "./LettersPage.css";
 import LetterCard from "../../components/Cards/LetterCard";
 import { useEffect, useState } from "react";
-
+import API_URL from "../../config";
 
 function LettersPage() {
 
@@ -20,7 +20,7 @@ useEffect(() => {
 
   if (!token) return;
 
-  fetch("http://localhost:3000/api/letters", {
+  fetch(`${API_URL}/api/letters`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -69,7 +69,7 @@ async function handleCreateLetter(event: React.FormEvent) {
   }
 
   const response = await fetch(
-    "http://localhost:3000/api/letters",
+    `${API_URL}/api/letters`,
     {
       method: "POST",
       headers: {

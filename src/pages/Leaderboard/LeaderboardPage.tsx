@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./LeaderboardPage.css";
+import API_URL from "../../config";
 
 type LeaderboardUser = {
   id: number;
@@ -17,7 +18,7 @@ function LeaderboardPage({ currentUserId }: LeaderboardPageProps) {
   const [users, setUsers] = useState<LeaderboardUser[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/leaderboard")
+    fetch(`${API_URL}/api/leaderboard`)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);

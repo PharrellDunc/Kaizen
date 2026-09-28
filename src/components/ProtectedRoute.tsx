@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import API_URL from "../config";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
       return;
     }
 
-    fetch("http://localhost:3000/api/me", {
+    fetch(`${API_URL}/api/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

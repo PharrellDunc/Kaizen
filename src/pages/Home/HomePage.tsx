@@ -1,6 +1,7 @@
 import StatsCard from "../../components/Cards/StatsCard";
 import FocusCard from "../../components/Cards/FocusCard";
 import { useEffect, useState } from "react";
+import API_URL from "../../config";
 
 type User = {
   name: string;
@@ -17,7 +18,7 @@ function HomePage({ user }: HomePageProps) {
   const [backendMessage, setBackendMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/health")
+    fetch(`${API_URL}/api/health`)
       .then((response) => response.json())
       .then((data) => {
         setBackendMessage(data.message);

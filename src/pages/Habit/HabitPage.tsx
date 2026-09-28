@@ -1,7 +1,7 @@
 import "./HabitPage.css";
 import HabitItem from "../../components/HabitItem";
 import { useEffect, useState } from "react";
-
+import API_URL from "../../config";
 
 const suggestionPool = [
   "🧘‍♀️ Take a 10 minute break to stretch and breathe.",
@@ -48,7 +48,7 @@ const todaysSuggestions = [
       return;
     }
 
-    fetch("http://localhost:3000/api/habits", {
+    fetch(`${API_URL}/api/habits`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -68,8 +68,7 @@ const todaysSuggestions = [
       return;
     }
 
-    const response = await fetch(
-      "http://localhost:3000/api/habits",
+    const response = await fetch(`${API_URL}/api/habits`,
       {
         method: "POST",
         headers: {
@@ -105,7 +104,7 @@ const todaysSuggestions = [
     if (!token) return;
 
     const response = await fetch(
-      `http://localhost:3000/api/habits/${id}`,
+      `${API_URL}/api/habits/${id}`,
       {
         method: "PATCH",
         headers: {
@@ -137,7 +136,7 @@ const todaysSuggestions = [
     if (!token) return;
 
     const response = await fetch(
-      `http://localhost:3000/api/habits/${id}`,
+      `${API_URL}/api/habits/${id}`,
       {
         method: "DELETE",
         headers: {

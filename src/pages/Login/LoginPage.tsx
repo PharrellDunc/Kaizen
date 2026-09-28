@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import "./LoginPage.css";
+import API_URL from "../../config";
 
 type LoginPageProps = {
   onLogin: (user: any) => void;
@@ -15,7 +16,7 @@ function LoginPage({ onLogin }: LoginPageProps) {
         event.preventDefault();
 
         const response = await fetch(
-            "http://localhost:3000/api/auth/login",
+            `${API_URL}/api/auth/login`,
             {
                 method: "POST",
                 headers: {

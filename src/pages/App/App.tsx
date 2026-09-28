@@ -11,6 +11,7 @@ import LoginPage from '../Login/LoginPage';
 import ProtectedRoute from '../../components/ProtectedRoute';
 import RegisterPage from '../Register/RegisterPage';
 import { useEffect, useState } from "react";
+import API_URL from "../../config";
 
 type User = {
   id: number;
@@ -44,7 +45,7 @@ function App() {
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    "http://localhost:3000/api/auth/account",
+    `${API_URL}/api/auth/account`,
     {
       method: "DELETE",
       headers: {
@@ -70,7 +71,7 @@ function App() {
     return;
   }
 
-  fetch("http://localhost:3000/api/me", {
+  fetch(`${API_URL}/api/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
