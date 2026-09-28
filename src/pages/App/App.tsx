@@ -19,17 +19,49 @@ type User = {
   level: number;
   xp: number;
   streak: number;
+  created_at: string;
+  last_login_date: string | null;
 };
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+  const [showAccountSettings, setShowAccountSettings] = useState(false);
   
   function handleLogout() {
     localStorage.removeItem("token");
     setUser(null);
     navigate("/login");
   }
+
+  async function handleDeleteAccount() {
+  const confirmed = window.confirm(
+    "Are you sure? This will permanently delete your account."
+  );
+
+  if (!confirmed) return;
+
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(
+    "http://localhost:3000/api/auth/account",
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    alert("Could not delete account.");
+    return;
+  }
+
+  localStorage.removeItem("token");
+  setUser(null);
+  navigate("/register");
+}
 
   useEffect(() => {
   const token = localStorage.getItem("token");
@@ -45,6 +77,8 @@ function App() {
   })
     .then((response) => {
       if (!response.ok) {
+        localStorage.removeItem("token");
+        setUser(null);
         return null;
       }
 
@@ -84,9 +118,15 @@ function App() {
                   🕒 Habits
                 </NavLink>
 
-                <NavLink to="/quests" className={({ isActive }) => isActive ? "active" : ""}>
-                  🎯 Quests
-                </NavLink>
+                <div className="locked-nav-item">
+                  <span className="locked-nav-label">
+                    🎯 Quests
+                  </span>
+
+                  <span className="locked-nav-badge">
+                    🔒
+                  </span>
+                </div>
 
                 <NavLink to="/letters" className={({ isActive }) => isActive ? "active" : ""}>
                   ✉️ Letters
@@ -96,9 +136,15 @@ function App() {
                   🏆 Leaderboard
                 </NavLink>
 
-                <NavLink to="/reflections" className={({ isActive }) => isActive ? "active" : ""}>
-                  📖 Reflections
-                </NavLink>
+                <div className="locked-nav-item">
+                  <span className="locked-nav-label">
+                    📖 Reflections
+                  </span>
+
+                   <span className="locked-nav-badge">
+                    🔒
+                    </span>
+              </div>
               </nav>
 
               <div className="sidebar-bottom">
@@ -127,6 +173,24 @@ function App() {
                 >
                   Logout
                 </button>
+
+                <button
+  className="account-settings-button"
+  onClick={() => setShowAccountSettings(!showAccountSettings)}
+>
+  ⚙️ Account Settings
+</button>
+
+{showAccountSettings && (
+  <div className="account-settings-panel">
+    <button
+      className="delete-account-button"
+      onClick={handleDeleteAccount}
+    >
+      Delete Account
+    </button>
+  </div>
+)}
 
               </div>
             </aside>
@@ -158,12 +222,12 @@ function App() {
               </div>
 
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/journey" element={<JourneyPage />} />
+                <Route path="/" element={<HomePage user={user}/>} />
+                <Route path="/journey" element={<JourneyPage user={user}/>} />
                 <Route path="/habits" element={<HabitPage />} />
                 <Route path="/quests" element={<QuestPage />} />
                 <Route path="/letters" element={<LettersPage />} />
-                <Route path="/leaderboard" element={<LeaderboardPage />} />
+                <Route path="/leaderboard" element={<LeaderboardPage currentUserId={user?.id}/>} />
                 <Route path="/reflections" element={<ReflectionsPage />} />
               </Routes>
 

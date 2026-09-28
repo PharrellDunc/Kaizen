@@ -1,119 +1,108 @@
 import StatsCard from "../../components/Cards/StatsCard";
 import FocusCard from "../../components/Cards/FocusCard";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function HomePage() {
+type User = {
+  name: string;
+  level: number;
+  xp: number;
+  streak: number;
+};
+
+type HomePageProps = {
+  user: User | null;
+};
+
+function HomePage({ user }: HomePageProps) {
   const [backendMessage, setBackendMessage] = useState("");
-  const[user, setUser] = useState<any>(null);
-  const navigate = useNavigate();
 
-useEffect(() => {
-  fetch("http://localhost:3000/api/health")
-    .then((response) => response.json())
-    .then((data) => {
-      setBackendMessage(data.message);
-    });
-}, []);
+  useEffect(() => {
+    fetch("http://localhost:3000/api/health")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendMessage(data.message);
+      });
+  }, []);
 
-useEffect(() => {
-  const token = localStorage.getItem("token");
+  return (
+    <main className="dashboard">
 
-  console.log("Token found:", token);
+      <section className="hero">
+        <div>
+          <h1>
+            Good evening,{" "}
+            <span className="name">
+              {user ? user.name : "Loading..."}
+            </span>
+          </h1>
 
-  if (!token) {
-    return;
-  }
+          <p>{backendMessage}</p>
 
-  fetch("http://localhost:3000/api/me", {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-})
-  .then((response) => {
-    if (response.status === 401) {
-      localStorage.removeItem("token");
-      navigate("/login");
-      return null;
-    }
+          <p>
+            You've got this.{" "}
+            <strong>1% better today.</strong>
+          </p>
+        </div>
 
-    return response.json();
-  })
-  .then((data) => {
-    if (data) {
-      setUser(data);
-    }
-  });
-}, []);
+        <div className="quote">
+          “Sometimes ambition moves the finish line so often that you forget how far you've already travelled.”
+        </div>
+      </section>
 
-    return (
-        <main className="dashboard">
-    <section className="hero">
-      <div>
-        <h1>Good evening, 
-          <span className="name">
-            {user ? user.name: "loading..."}
-          </span>
-        </h1>
-        <p>{backendMessage}</p>
-        <p>You've got this. <strong>1% better today.</strong></p>
-      </div>
+      <section className="stats">
+        <StatsCard
+          icon="🔥"
+          title="Day Streak"
+          value={String(user?.streak ?? 0)}
+          subtitle="days"
+        />
 
-      <div className="quote">
-        “Sometimes ambition moves the finish line so often that you forget how far you've already travelled.”
-      </div>
-    </section>
+        <StatsCard
+          icon="📈"
+          title="Progress"
+          value={`Level ${user?.level ?? 1}`}
+          subtitle={`${user?.xp ?? 0} XP`}
+        />
 
-    <section className="stats">
-      <StatsCard
-      icon="🔥"
-      title="Day Streak"
-      value="17"
-      subtitle="days"
-/>
+        <FocusCard
+          icon="🌿"
+          title="Kaizen"
+          task={[
+            "Keep showing up.",
+            "Small progress still counts.",
+            "1% better today."
+          ]}
+        />
+      </section>
 
-      <StatsCard
-      icon="📈"
-      title="Progress"
-      value="Level 12"
-      subtitle="1,250 / 2,000 XP"
-/>
+      <section className="lower-grid">
 
-      <FocusCard
-      icon="📈"
-      title="Progress"
-task={[
-    "Gym",
-    "Read 20 pages",
-    "Coding"
-]}/>
-    </section>
+        <div className="card">
+          <span>🌿 Daily Quest</span>
+          <h3>Coming soon.</h3>
+          <p>Small courage compounds.</p>
+        </div>
 
-    <section className="lower-grid">
-      <div className="card">
-        <span>🌿 Daily Quest</span>
-        <h3>Do something uncomfortable.</h3>
-        <p>Small courage compounds.</p>
-        <button>View Quest</button>
-      </div>
+        <div className="card tree-card">
+          <span>🌳 Habit Tree</span>
+          <div className="tree">🌳</div>
+          <p>
+            Nurture your habits. Watch yourself grow.
+          </p>
+        </div>
 
-      <div className="card tree-card">
-        <span>🌳 Habit Tree</span>
-        <div className="tree">🌳</div>
-        <p>Nurture your habits. Watch yourself grow.</p>
-      </div>
+        <div className="card">
+          <span>✉️ Letter to Future You</span>
+          <h3>Coming soon.</h3>
+          <p>
+            A future version of you will have something to read.
+          </p>
+        </div>
 
-      <div className="card">
-        <span>✉️ Letter to Future You</span>
-        <h3>Remember who you wanted to be?</h3>
-        <p>Leave something for the person you're becoming.</p>
-        <button>Write Letter</button>
-      </div>
-    </section>
-  </main>
-    )
+      </section>
+
+    </main>
+  );
 }
-
-
 
 export default HomePage;

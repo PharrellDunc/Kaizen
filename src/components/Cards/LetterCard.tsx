@@ -1,34 +1,40 @@
 interface LetterCardProps {
-title: string;
-date: string;
-locked: boolean;
-preview: string;
+  title: string;
+  date: string;
+  locked: boolean;
+  preview: string;
+  onRead?: () => void;
 }
 
 function LetterCard(props: LetterCardProps) {
-    return (
-        <div className="letter-card">
-            <div className="letter-icon">
-                {props.locked ? "🔒" : "✉️"}
-            </div>
-            <h3>{props.title}</h3>
+  return (
+    <div className="letter-card">
+      <div className="letter-icon">
+        {props.locked ? "🔒" : "✉️"}
+      </div>
 
-            <p className="letter-date">
-                {props.locked ? "Opens on" : "Written on"}
-                <br />
-                {props.date}
-                </p>
+      <h3>{props.title}</h3>
 
-                <p className="letter-preview">
-                    “{props.preview}”
-                </p>
+      <p className="letter-date">
+        {props.locked ? "Opens on" : "Written on"}
+        <br />
+        {props.date}
+      </p>
 
-                {!props.locked && (
-        <button>Read Letter</button>
-      )}
+      <p className="letter-preview">
+        “{props.preview}”
+      </p>
 
-            </div>
-    );
+      {!props.locked && (
+        <button
+            className="read-letter-button"
+            onClick={props.onRead}
+        >
+            Read Letter
+        </button>
+     )}
+    </div>
+  );
 }
 
 export default LetterCard;

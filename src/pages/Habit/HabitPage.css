@@ -48,6 +48,65 @@ padding: 28px;
     font-size: 20px;
 }
 
+.add-habit-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.add-habit-form input {
+  width: 320px;
+  padding: 13px 16px;
+
+  border-radius: 12px;
+  border: 1px solid #29415b;
+
+  background: #0c1d30;
+  color: white;
+
+  outline: none;
+}
+
+.add-habit-form input:focus {
+  border-color: #69db85;
+  box-shadow: 0 0 0 3px rgba(105, 219, 133, 0.08);
+}
+
+.add-habit-button,
+.edit-habits-button {
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    90deg,
+    #5ed486,
+    #b9f06d
+  );
+
+  color: #07111f;
+
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 20px rgba(119, 232, 130, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-habit-button:hover,
+.edit-habits-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 30px rgba(119, 232, 130, 0.35);
+}
+
 .habit-info h3 {
     margin: 0;
 }
@@ -114,4 +173,53 @@ padding: 28px;
 .habits-heading p {
     color: #aebbd0;
     font-size: 20px;
+}
+
+.habit-toggle {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+    border: 1px solid #2a3f5c;
+
+    background: #12243b;
+
+    color: white;
+    cursor: pointer;
+
+    transition: all .2s ease;
+}
+
+.habit-toggle:hover{
+    transform: scale(1.08);
+    border-color:#74f98d;
+}
+
+.habit-toggle.completed{
+    background:linear-gradient(135deg,#6ae87f,#bdf56d);
+    color:#08141f;
+    box-shadow:0 0 18px rgba(106,232,127,.35);
+}
+
+.delete-button{
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+    border:1px solid #3c2c36;
+
+    background:#16273d;
+
+    color:#ff7b8d;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.delete-button:hover{
+    background:#ff4f6b;
+    color:white;
+
+    transform:scale(1.08);
 }

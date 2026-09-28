@@ -60,6 +60,11 @@
   border-radius: 16px;
 }
 
+.leaderboard-table {
+  max-height: 650px;
+  overflow-y: auto;
+}
+
 .leaderboard-row {
   display: grid;
   grid-template-columns: 60px 1.5fr 100px 120px 100px;

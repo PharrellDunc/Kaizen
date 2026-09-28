@@ -35,4 +35,37 @@ router.post("/", auth, async (req, res) => {
   res.status(201).json(result.rows[0]);
 });
 
+router.patch("/:id", auth, async (req, res) => {
+  const userId = res.locals.userId;
+  const habitId = req.params.id;
+  const { completed } = req.body;
+
+  const result = await pool.query(
+    `
+    UPDATE habits
+    SET completed = $1
+    WHERE id = $2 AND user_id = $3
+    RETURNING *
+    `,
+    [completed, habitId, userId]
+  );
+
+  res.json(result.rows[0]);
+});
+
+router.delete("/:id", auth, async (req, res) => {
+  const userId = res.locals.userId;
+  const habitId = req.params.id;
+
+  await pool.query(
+    `
+    DELETE FROM habits
+    WHERE id = $1 AND user_id = $2
+    `,
+    [habitId, userId]
+  );
+
+  res.status(204).send();
+});
+
 export default router;

@@ -1,117 +1,162 @@
-import './LeaderboardPage.css';
+import { useEffect, useState } from "react";
+import "./LeaderboardPage.css";
 
-const users = [
-  { rank: 1, name: "Franca", level: 28, xp: 12450, streak: 67 },
-  { rank: 2, name: "JordanBH", level: 25, xp: 11200, streak: 48 },
-  { rank: 3, name: "David_m", level: 22, xp: 9870, streak: 37 },
-  { rank: 4, name: "JackTaylor", level: 20, xp: 8410, streak: 29 },
-  { rank: 5, name: "UgoChuckwu", level: 19, xp: 7995, streak: 28 },
-  { rank: 6, name: "tavienGyms", level: 18, xp: 7430, streak: 24 },
-  { rank: 7, name: "iScxnarity", level: 17, xp: 6980, streak: 21 },
-  { rank: 8, name: "RelluAesthetics", level: 16, xp: 6210, streak: 19 },
-  { rank: 9, name: "Serenity", level: 15, xp: 5880, streak: 17 },
-  { rank: 10, name: "Pharrell (You)", level: 12, xp: 4360, streak: 17 },
-];
+type LeaderboardUser = {
+  id: number;
+  name: string;
+  level: number;
+  xp: number;
+  streak: number;
+};
 
-function LeaderboardPage() {
-    return (
-        <main className="dashboard leaderboard-page">
-            <section className="leaderboard-hero">
-                <span>TOGETHER WE GROW</span>
+type LeaderboardPageProps = {
+  currentUserId?: number;
+};
 
-                <h1>Leaderboard</h1>
+function LeaderboardPage({ currentUserId }: LeaderboardPageProps) {
+  const [users, setUsers] = useState<LeaderboardUser[]>([]);
 
-                <p>Discipline is contagious. Surround yourself
-                    with those who inspire you to be better.
-                </p>
-                </section>
+  useEffect(() => {
+    fetch("http://localhost:3000/api/leaderboard")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, []);
 
-                <section className="leaderboard-controls">
-                    <div className="leaderboard-tabs">
-                        <button className="active">Global</button>
-                        <button>Friends</button>
-                        <button>This Month</button>
-                        <button>All Time</button>
-                    </div>
+  const currentUserIndex = users.findIndex(
+    (user) => user.id === currentUserId
+  );
 
-                <select className="leaderboard-sort">
-                    <option>XP (Highest First)</option>
-                    <option>Streak</option>
-                    <option>Level</option>
-                    </select>
-                </section>
+  const currentUser = currentUserIndex >= 0
+    ? users[currentUserIndex]
+    : null;
 
-                <section className="leaderboard-main">
-                    <div className="leaderboard-table">
-                        <div className="leaderboard-row leaderboard-header">
-                            <span>#</span>
-                            <span>Name</span>
-                            <span>Level</span>
-                            <span>XP</span>
-                            <span>Streak</span>
-                        </div>
+  return (
+    <main className="dashboard leaderboard-page">
 
-                        {users.map((user) => (
-                            <div 
-                            key={user.name} 
-                            className={
-                                user.name ==="Pharrell"
-                                ? "leaderboard-row current-user"
-                                : "leaderboard-row"
-                            }
-                            >
-                                <span>🎖️{user.rank}</span>
-                                <span>{user.name}</span>
-                                <span>{user.level}</span>
-                                <span>{user.xp}</span>
-                                <span>🔥{user.streak}</span>
-                            </div>
-                        ))}
-                        </div>
+      <section className="leaderboard-hero">
+        <h1>Leaderboard 🏆</h1>
+        <p>
+          Consistency compounds. See who's showing up and building momentum.
+        </p>
+      </section>
 
-                        <div className="leaderboard-side">
-                            <div className="rank-card">
-                                <h2>Your Rank</h2>
-                                <strong>#10</strong>
-                                <p>Out of 1,284 Kaizen users</p>
+      <div className="leaderboard-controls">
+        <div className="leaderboard-tabs">
+          <button className="active">
+            Global
+          </button>
 
-                                <div className="rank-stats">
-                                    <div>
-                                        <span>Level</span>
-                                        <strong>12</strong>
-                                        </div>
+          <button disabled>
+            Friends 🔒
+          </button>
+        </div>
 
-                                    <div>
-                                        <span>XP</span>
-                                        <strong>4,360</strong>
-                                    </div>
+        <button className="leaderboard-sort" disabled>
+          Streak ↓
+        </button>
+      </div>
 
-                                    <div>
-                                        <span>Streak</span>
-                                        <strong>🔥 17</strong>
-                                    </div>
-                                </div>
-                            </div>
+      <section className="leaderboard-main">
 
-                            <div className="keep-going-card">
-                                <h2>🎯 Keep Going</h2>
-                                <p>You're in the <strong>top 10%</strong>!</p>
-                                <p>Stay consistent and climb higher.</p>
-                            </div>
+        <div className="leaderboard-table">
 
-                            <div className="leaderboard-quote">
-                                <p>
-                                    "Comparison can be a tool for inspiration, not insecrurity.
-                                    Let others' progress motivate your own.""
-                                </p>
-                            </div>
-                        </div>
-                    </section>
+          <div className="leaderboard-row leaderboard-header">
+            <span>Rank</span>
+            <span>User</span>
+            <span>Level</span>
+            <span>Streak</span>
+            <span>XP</span>
+          </div>
 
-                    <p className="leaderboard-footer">
-                        Better habitts. Brighter futures. Together.
-                    </p>
-            </main>
-    );
+          {users.map((user, index) => (
+            <div
+              key={user.id}
+              className={
+                user.id === currentUserId
+                  ? "leaderboard-row current-user"
+                  : "leaderboard-row"
+              }
+            >
+              <span>#{index + 1}</span>
+
+              <strong>
+                {user.name}
+              </strong>
+
+              <span>
+                Level {user.level}
+              </span>
+
+              <span>
+                🔥 {user.streak}
+              </span>
+
+              <span>
+                💎 {user.xp}
+              </span>
+            </div>
+          ))}
+
+        </div>
+
+        <aside className="leaderboard-side">
+
+          <div className="rank-card">
+            <p>Your Rank</p>
+
+            <strong>
+              {currentUserIndex >= 0
+                ? `#${currentUserIndex + 1}`
+                : "—"}
+            </strong>
+
+            {currentUser && (
+              <div className="rank-stats">
+
+                <div>
+                  <strong>{currentUser.streak}</strong>
+                  <span>Streak</span>
+                </div>
+
+                <div>
+                  <strong>{currentUser.level}</strong>
+                  <span>Level</span>
+                </div>
+
+                <div>
+                  <strong>{currentUser.xp}</strong>
+                  <span>XP</span>
+                </div>
+
+              </div>
+            )}
+          </div>
+
+          <div className="keep-going-card">
+            <h3>Keep going 🌱</h3>
+            <p>
+              Your position isn't the goal.
+              <br />
+              <strong>Beating yesterday is.</strong>
+            </p>
+          </div>
+
+          <div className="leaderboard-quote">
+            “Comparison kills confidence. Progress builds it.”
+          </div>
+
+        </aside>
+
+      </section>
+
+      <p className="leaderboard-footer">
+        Showing the top {users.length} members globally.
+      </p>
+
+    </main>
+  );
 }
+
 export default LeaderboardPage;

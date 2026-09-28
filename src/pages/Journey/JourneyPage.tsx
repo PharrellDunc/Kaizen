@@ -1,187 +1,150 @@
-import StatsCard from '../../components/Cards/StatsCard';
-import './JourneyPage.css';
-import TimelineEvent from '../../components/TimelineEvent';
-import { useState } from 'react';
+import StatsCard from "../../components/Cards/StatsCard";
+import TimelineEvent from "../../components/TimelineEvent";
+import "./JourneyPage.css";
 
-const timelineEvents = [
-  {
-    icon: "🌱",
-    date: "2 Aug",
-    time: "09:14",
-    title: "You started your Kaizen journey.",
-    description: "Every great journey begins with a single step.",
-    xp: "+100 XP",
-  },
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  level: number;
+  xp: number;
+  streak: number;
+  created_at: string;
+  last_login_date: string | null;
+};
 
-  {
-    icon: "🔥",
-    date: "5 Aug",
-    time: "21:33",
-    title: "Reached a 3 day streak.",
-    description: "Consistency is quietly becoming your superpower.",
-    xp: "+50 XP",
-  },
+type JourneyPageProps = {
+  user: User | null;
+};
 
-  {
-    icon: "📚",
-    date: "8 Aug",
-    time: "18:10",
-    title: "Finished reading Atomic Habits.",
-    description: "Small habits. Big change.",
-    xp: "+150 XP",
-  },
-];
+function JourneyPage({ user }: JourneyPageProps) {
+  if (!user) {
+    return (
+      <main className="dashboard journey-page">
+        <p>Loading journey...</p>
+      </main>
+    );
+  }
 
-function JourneyPage() {
-    const [activeTab, setActiveTab] = useState("timeline");
-    const [timeFilter, setTimefilter] = useState("All Time");
+  const lastLogin = user.last_login_date
+  ? new Date(user.last_login_date)
+  : null;
+
+const daysSinceLogin = lastLogin
+  ? Math.floor(
+      (Date.now() - lastLogin.getTime()) /
+        (1000 * 60 * 60 * 24)
+    )
+  : 999;
+
+const isActive = daysSinceLogin < 4;
+
+  const createdAt = new Date(user.created_at);
+
+  const daysOnJourney =
+    Math.floor(
+      (Date.now() - createdAt.getTime()) /
+        (1000 * 60 * 60 * 24)
+    ) + 1;
+
+  const joinedDate = createdAt.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const joinedTime = createdAt.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
-<main className ="dashboard journey-page">
+    <main className="dashboard journey-page">
 
-    <section className ="journey-hero">
+      <section className="journey-hero">
         <div className="journey-heading">
-            <h1>Journey 🌱</h1>
-            <p>Track your path. Celebrate progress. Become 1% better each day.</p>
-            </div>
+          <h1>Journey 🌱</h1>
+
+          <p>
+            Track your path. Celebrate progress. Become 1% better each day.
+          </p>
+        </div>
 
         <div className="journey-landscape">
-            <span className ="journey-planet">🪐</span>
-            <span className ="journey-traveller">🚶</span>
-            </div>
-        </section>
+          <span className="journey-planet">🪐</span>
+          <span className="journey-traveller">🚶</span>
+        </div>
+      </section>
 
-    <section className="journey-stats">
-        <StatsCard
-            icon="📅"
-            title="Days on Journey"
-            value="23"
-            subtitle="Started 2 Aug 2025"
-            />
-        
-        <StatsCard
-            icon="🏁"
-            title="Milestones"
-            value="14"
-            subtitle="Unlocked"
-            />
+      <section className="journey-stats">
 
         <StatsCard
-            icon="🎯"
-            title="Challenges"
-            value="7"
-            subtitle="Completed"
-            />
-
-        <StatsCard
-            icon="🔥"
-            title="Longest Streak"
-            value="17"
-            subtitle="days"
-            />
-    </section>
-
-    <div className="timeline-topbar">
-    <section className="journey-tabs">
-
-<button onClick={() => setActiveTab("timeline")}
-  className={activeTab === "timeline" 
-  ? "journey-tab active-tab" 
-  : "journey-tab"
-  }
-  >
-    🏠 Home
-    </button>
-
-<button onClick={() => setActiveTab("milestones")}
-  className={activeTab === "milestones" 
-  ? "journey-tab active-tab" 
-  : "journey-tab"
-  }
-  >
-    📈 Journey
-    </button>
-
-<button onClick={() => setActiveTab("challenges")}
-  className={activeTab === "challenges" 
-  ? "journey-tab active-tab" 
-  : "journey-tab"
-  }
-  >
-    🕒 Habits
-    </button>
-
-<button onClick={() => setActiveTab("stats")}
-  className={activeTab  === "stats" 
-  ? "journey-tab active-tab" 
-  : "journey-tab"
-  }
-  >
-    🎯 Quests
-    </button>
-        </section>
-        
-    <select
-    className="timeline-filter"
-    value={timeFilter}
-    onChange={(e) => setTimefilter(e.target.value)}
-    >
-        <option value="All Time">All Time</option>
-        <option value="Last 30 Days">This Month</option>
-        <option value="Last 7 Days">This Week</option>
-    </select>
-    </div>   
-
-    <section className="journey-timeline">
-        <div className="timeline-month-row">
-  <div></div>
-
-  <h4 className="timeline-month">
-    August 2026
-  </h4>
-</div>
-
-    {timelineEvents.map((event) => (
-        <TimelineEvent
-        key={`${event.date}-${event.time}-${event.title}`}
-            icon={event.icon}
-            date={event.date}
-            time={event.time}
-            title={event.title}
-            description={event.description}
-            xp={event.xp}
+          icon="📅"
+          title="Days on Journey"
+          value={String(daysOnJourney)}
+          subtitle={`Started ${joinedDate}`}
         />
-    ))}
-        </section>
 
+        <StatsCard
+          icon="🔥"
+          title="Current Streak"
+          value={String(user.streak)}
+          subtitle="days"
+        />
 
-{activeTab === "milestones" && (
-  <section>
-    <h2>Milestones</h2>
-    <p>Your unlocked milestones will appear here.</p>
-  </section>
-)}
+        <StatsCard
+          icon="💎"
+          title="Progress"
+          value={`Level ${user.level}`}
+          subtitle={`${user.xp} XP`}
+        />
 
-{activeTab === "challenges" && (
-  <section>
-    <h2>Challenges</h2>
-    <p>Your completed challenges will appear here.</p>
-  </section>
-)}
+        <StatsCard
+  icon={isActive ? "🌱" : "🌙"}
+  title="Journey Status"
+  value={isActive ? "Active" : "Inactive"}
+  subtitle={
+    isActive
+      ? "Keep showing up"
+      : "Come back and keep growing"
+  }
+/>
 
-{activeTab === "stats" && (
-  <section>
-    <h2>Stats</h2>
-    <p>Your Journey statistics will appear here.</p>
-  </section>
-)}
+      </section>
 
-<p className="journey-footer-message">
-    keep going, Pharrell. Your future self is watching.
-</p>
+      <section className="journey-timeline">
+
+        <div className="timeline-month-row">
+          <div></div>
+
+          <h4 className="timeline-month">
+            {createdAt.toLocaleDateString("en-GB", {
+              month: "long",
+              year: "numeric",
+            })}
+          </h4>
+        </div>
+
+        <TimelineEvent
+          icon="🌱"
+          date={createdAt.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "short",
+          })}
+          time={joinedTime}
+          title="You started your Kaizen journey."
+          description="Every great journey begins with a single step."
+          xp=""
+        />
+
+      </section>
+
+      <p className="journey-footer-message">
+        Keep going, {user.name}. Your future self is watching.
+      </p>
+
     </main>
-);
-
-
+  );
 }
 
 export default JourneyPage;

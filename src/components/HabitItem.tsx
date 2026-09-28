@@ -3,26 +3,38 @@ interface HabitItemProps {
     name: string;
     streak: number;
     completed: boolean;
+    onToggle: () => void;
+  onDelete?: () => void;
   };
 
-  function HabitItem(props:HabitItemProps) {
+  function HabitItem({icon,name,streak,completed,onToggle,onDelete,}: HabitItemProps) {
     return (
-        <div className="habit-item">
-            <div className="habit-info">
-                <span className="habit-icon">{props.icon}</span>
+  <div className="habit-item">
+    <div className="habit-icon">{icon}</div>
 
-                <div>
-                <h3>{props.name}</h3>
-                <p>🔥 {props.streak} day streak </p>
+    <div className="habit-info">
+      <strong>{name}</strong>
+      <span>🔥 {streak} day streak</span>
+    </div>
 
-            </div>
-                </div>
+    <button
+    className={
+        completed
+            ? "habit-toggle completed"
+            : "habit-toggle"
+    }
+    onClick={onToggle}
+>
+    {completed ? "✓" : ""}
+</button>
 
-            <button className="habit-check">
-                {props.completed ?"✅" : "⬜"}
-                </button>
-            </div>
-    );
+    {onDelete &&(
+    <button className="delete-button" onClick={onDelete}>
+      🗑️
+    </button>
+    )}
+  </div>
+);
   }
 
   export default HabitItem;

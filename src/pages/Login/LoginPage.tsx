@@ -104,9 +104,13 @@ function LoginPage({ onLogin }: LoginPageProps) {
           onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button type="button" className="forgot-password">
-          Forgot password?
-        </button>
+        <button
+  type="button"
+  className="forgot-password"
+  disabled
+>
+  Forgot password? (Coming soon)
+</button>
 
         <button type="submit" className="login-button">
           Log in →
@@ -117,9 +121,12 @@ function LoginPage({ onLogin }: LoginPageProps) {
         <span>OR</span>
       </div>
 
-      <button className="google-login">
-        Continue with Google
-      </button>
+      <button
+  className="google-login"
+  disabled
+>
+  Continue with Google (Coming soon)
+</button>
 
       <p className="register-link">
      New here?{" "}
@@ -132,6 +139,7 @@ function LoginPage({ onLogin }: LoginPageProps) {
 
     <footer className="login-footer">
       “A better tomorrow starts with a better today.”
+      <span> Created by Pharrell Duncan</span>
     </footer>
 
   </main>
