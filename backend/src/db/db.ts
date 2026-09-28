@@ -9,8 +9,5 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-//Tests
-console.log("DB_USER:", process.env.DB_USER);
-console.log("DB_PASSWORD exists:", !!process.env.DB_PASSWORD);
 
 export default pool;
