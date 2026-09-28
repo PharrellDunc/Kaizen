@@ -2,14 +2,15 @@ name: Kaizen CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-    pull_request: [main]
-
-
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -30,6 +31,6 @@ on:
         working-directory: backend
         run: npm ci
 
-      - name: Build backend
+      - name: Check backend TypeScript
         working-directory: backend
         run: npm run build
