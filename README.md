@@ -1,75 +1,79 @@
-# React + TypeScript + Vite
+# 🌱 Kaizen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kaizen is a full-stack self-improvement platform built around the Japanese philosophy of continuous improvement — becoming 1% better every day.
 
-Currently, two official plugins are available:
+Rather than focusing purely on productivity, Kaizen encourages users to build sustainable habits, reflect on their progress and track their personal growth over time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- 🔐 User registration and login
+- 🔑 JWT-based authentication and protected routes
+- 🔒 Secure password hashing with bcrypt
+- 🔥 Daily login streak tracking
+- 🌱 Personal habit creation, completion and deletion
+- 📊 Real-time user leaderboard
+- ✉️ Letters to your future self
+- 🔐 Date-locked time-capsule letters
+- 📧 Registration and letter notification emails
+- 📈 Personal journey tracking
+- 📱 Responsive interface
+- 🗑️ Secure account deletion
+- 💾 Persistent PostgreSQL storage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
+- React
+- TypeScript
+- Vite
+- React Router
+- CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Backend
+- Node.js
+- Express
+- TypeScript
+- JWT
+- bcrypt
+- Nodemailer
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Database
+- PostgreSQL
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🏗️ Architecture
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Kaizen uses a full-stack client-server architecture.
 
-```
+The React frontend communicates with a REST API built using Express. Authentication is handled using JSON Web Tokens, while application data is persisted in PostgreSQL.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Protected API endpoints use authentication middleware to associate requests with the currently user.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🌿 Philosophy
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The project was built around a simple idea:
 
-```
+> Becoming better shouldn't require being disappointed with who you are today.
+
+Small actions compound. Kaizen aims to make that progress visible. 
+
+## 🚧 Future Development
+
+Kaizen is currently an MVP. Planned features include:
+
+- Daily quests
+- Quote of the day
+- Reflections
+- Expanded progress analytics
+- Google authentication
+- Password recovery
+- Improved mobile experience
+- Community features
+- Richer notification support
+- Mobile app deployment
+
+## 👨🏾‍💻 Created By
+
+**Pharrell Duncan**
+
+MSCi Computer Science (Software Engineering)  
+Royal Holloway, University of London
