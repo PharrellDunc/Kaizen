@@ -4,6 +4,9 @@ Kaizen is a full-stack self-improvement platform built around the Japanese philo
 
 Rather than focusing purely on productivity, Kaizen encourages users to build sustainable habits, reflect on their progress and track their personal growth over time.
 
+ **Live Demo:** https://kaizen-pd.netlify.app
+ **Note:** The backend is hosted on a free-tier service and may take up to a minute to wake after a period of inactivity.
+
 ## ✨ Features
 
 - 🔐 User registration and login
